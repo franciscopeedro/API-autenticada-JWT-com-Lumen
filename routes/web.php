@@ -13,8 +13,9 @@
 |
 */
 $router->group(['prefix' => 'api'], function () use ($router) {
+  //USERS
   // Matches "/api/register
- $router->post('register', 'AuthController@register');
+ $router->post('register/user', 'AuthController@register');
    // Matches "/api/login
   $router->post('login', 'AuthController@login');
 
@@ -28,6 +29,20 @@ $router->group(['prefix' => 'api'], function () use ($router) {
   // Matches "/api/users
   $router->get('users', 'UserController@allUsers');
   
-  // registrar produto /register/product
+  // PRODUCTS
+  // Mostrar produtos OK
+  $router->get('product', 'ProductsController@index');
+  
+  // Registrar um produto OK
   $router->post('register/product', 'ProductsController@register');
+
+  // mostrar produto OK
+  $router->get('product/show/{id}', 'ProductsController@show');
+
+  // editar um produto OK
+  $router->post('product/update/{id}', 'ProductsController@update');
+
+  // deletar um produto OK
+  $router->delete('product/delete/{id}', 'ProductsController@destroy');
+
 });
